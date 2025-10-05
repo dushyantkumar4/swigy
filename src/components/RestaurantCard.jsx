@@ -1,5 +1,5 @@
 import React from "react";
-import { CDN_URL } from "../utils/constant";
+import { IMG_URL } from "../utils/constant.js";
 const RestaurantCard = ({ resData }) => {
   return (
     <div className="res-card-container">
@@ -16,7 +16,7 @@ const RestaurantCard = ({ resData }) => {
         return (
           <div className="res-card" key={id}>
             <img
-              src={CDN_URL + cloudinaryImageId}
+              src={IMG_URL + cloudinaryImageId}
               alt="res-logo"
               className="res-logo"
             />
