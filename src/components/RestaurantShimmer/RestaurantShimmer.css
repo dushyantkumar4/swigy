@@ -1,0 +1,14 @@
+.shimmer-container{
+    margin-top: 2rem !important;
+    width: auto !important;
+    display: flex !important;
+    gap:30px;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+}
+
+.shimmer-card{
+    width: 250px !important;
+    padding-left: -5px !important;
+    max-height: 500px;
+}

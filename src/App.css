@@ -1,3 +1,6 @@
+body{
+    
+}
 .header{
     display: flex;
     justify-content: space-between;
@@ -28,6 +31,7 @@
     margin:5px;
     width: 200px;
     /* height: 350px; */
+    background: #F7F9FA;
 }
 .res-card:hover{
     cursor: pointer;
@@ -47,5 +51,10 @@
 }
 .filter-btn{
     margin:10px;
+    cursor: pointer;
+}
+
+.login{
+    padding:0 20px !important;
     cursor: pointer;
 }

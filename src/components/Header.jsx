@@ -7,11 +7,12 @@ const Header = () => {
         <img className="logo" src="src\assets\images\foodlogo2.png" alt="" />
       </div>
       <div className="nav-items">
-        <ul>
+        <ul className='header-list'>
           <li>Home</li>
           <li>About</li>
           <li>Contact Us</li>
           <li>cart</li>
+          <button className='login'>Login</button>
         </ul>
       </div>
     </div>
