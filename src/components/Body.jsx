@@ -6,6 +6,7 @@ import RestaurantShimmer from "./RestaurantShimmer/RestaurantShimmer.jsx";
 const Body = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [serchText,setSearchText] = useState("");
 
   useEffect(() => {
     const getRestaurants = async () => {
@@ -21,6 +22,10 @@ const Body = () => {
   return (
     <div className="body">
       <div className="search">
+        <div>
+          <input className="serch-box" value={serchText}/>
+          <button onClick={()=>{}}>Search</button>
+        </div>
         <button
           className="filter-btn"
           onClick={() => {
