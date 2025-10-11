@@ -5,26 +5,44 @@ import RestaurantShimmer from "./RestaurantShimmer/RestaurantShimmer.jsx";
 
 const Body = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
+  const [filterRestaurant,setFilterRestaurant] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [serchText,setSearchText] = useState("");
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     const getRestaurants = async () => {
       const data = await fetchApiData();
       setListOfRestaurant(data);
+      setFilterRestaurant(data);
       setLoading(false);
     };
     getRestaurants();
   }, []);
 
   if (loading) return <RestaurantShimmer />;
-  
+
   return (
     <div className="body">
-      <div className="search">
-        <div>
-          <input className="serch-box" value={serchText}/>
-          <button onClick={()=>{}}>Search</button>
+      <div className="filter">
+        <div className="search">
+          <input
+            className="serch-box"
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          />
+          <button
+            onClick={() => {
+              
+              const filterdRestaurent = listOfRestaurant.filter(
+                (res) => res.info.name.toLowerCase().includes(searchText.toLowerCase()) 
+              );
+              setFilterRestaurant(filterdRestaurent);
+            }}
+          >
+            Search
+          </button>
         </div>
         <button
           className="filter-btn"
@@ -39,7 +57,7 @@ const Body = () => {
         </button>
       </div>
       <div className="res-container">
-        <RestaurantCard resData={listOfRestaurant} />
+        <RestaurantCard resData={filterRestaurant} />
       </div>
     </div>
   );

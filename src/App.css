@@ -58,3 +58,6 @@ body{
     padding:0 20px !important;
     cursor: pointer;
 }
+.filter{
+    display: flex;
+}
