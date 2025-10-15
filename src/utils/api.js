@@ -1,23 +1,23 @@
 import axios from "axios";
 
-const baseUrl = "https://www.swiggy.com/dapi/restaurants/list/v5";
-const lat = 28.6139;
-const lng = 77.209;
+const baseUrl = `/swiggy/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true`;
+
+const lat = 28.7040592;
+const lng = 77.10249019999999;
 
 export const fetchApiData = async () => {
   try {
-    const url = `${baseUrl}?lat=${lat}&lng=${lng}&page_type=DESKTOP_WEB_LISTING`;
+    const url = `${baseUrl}&lat=${lat}&lng=${lng}&carousel=true&third_party_vendor=1`;
     const res = await axios.get(url);
 
-    // extract restaurants safely
     const restaurants =
       res.data?.data?.cards?.find(
         (c) => c.card?.card?.gridElements?.infoWithStyle?.restaurants
       )?.card.card.gridElements.infoWithStyle.restaurants || [];
 
-    return restaurants; // return array of restaurants
+    return restaurants;
   } catch (error) {
     console.error("Error fetching restaurants:", error.message);
-    return []; // fallback empty array
+    return [];
   }
 };
