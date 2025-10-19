@@ -5,6 +5,7 @@ import RestaurantShimmer from "./RestaurantShimmer/RestaurantShimmer.jsx";
 
 const Body = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
+  // while seraching can serch from all
   const [filterRestaurant,setFilterRestaurant] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchText, setSearchText] = useState("");
