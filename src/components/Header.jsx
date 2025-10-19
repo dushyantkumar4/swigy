@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   const [btnNameReact, setBtnNameReact] = useState("Login");
@@ -10,10 +11,18 @@ const Header = () => {
       </div>
       <div className="nav-items">
         <ul className="header-list">
-          <li>Home</li>
-          <li>About</li>
-          <li>Contact Us</li>
-          <li>cart</li>
+          <li>
+            <NavLink to="/">Home</NavLink>
+          </li>
+          <li>
+            <NavLink to="/about">About</NavLink>
+          </li>
+          <li>
+            <NavLink to="/contact">Contact Us</NavLink>
+          </li>
+          <li>
+            <NavLink>cart</NavLink>
+          </li>
           <button
             className="login"
             onClick={() => {
