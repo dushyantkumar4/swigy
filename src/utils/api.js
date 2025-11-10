@@ -1,10 +1,11 @@
 import axios from "axios";
-
+// Base url for the all restaurant 
 const baseUrl = `/swiggy/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true`;
 
 const lat = 28.7040592;
 const lng = 77.10249019999999;
 
+// fetching the data for the all restaurant
 export const fetchApiData = async () => {
   try {
     const url = `${baseUrl}&lat=${lat}&lng=${lng}&carousel=true&third_party_vendor=1`;
@@ -19,5 +20,23 @@ export const fetchApiData = async () => {
   } catch (error) {
     console.error("Error fetching restaurants:", error.message);
     return [];
+  }
+};
+
+// fetching the single restaturen details 
+export const singleRestaurantApi = async (restaurantId = "10208") => {
+  try {
+    // const lat = 28.7040592;
+    // const lng = 77.10249019999999;
+
+    const res = await axios.get(
+      `/swiggy/mapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=${lat}&lng=${lng}&restaurantId=${restaurantId}&submitAction=ENTER`
+    );
+
+    // console.log(res.data);
+    return res.data;
+  } catch (error) {
+    console.error("Error fetching restaurant menu:", error.message);
+    return null;
   }
 };

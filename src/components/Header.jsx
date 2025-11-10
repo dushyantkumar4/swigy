@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import logo from "../assets/images/foodlogo2.png";
 
 const Header = () => {
   const [btnNameReact, setBtnNameReact] = useState("Login");
@@ -7,7 +8,7 @@ const Header = () => {
   return (
     <div className="header">
       <div className="logo-container">
-        <img className="logo" src="src\assets\images\foodlogo2.png" alt="" />
+        <img className="logo" src={logo} alt="" />
       </div>
       <div className="nav-items">
         <ul className="header-list">
