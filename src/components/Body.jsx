@@ -3,10 +3,10 @@ import RestaurantCard from "./RestaurantCard";
 import { fetchApiData } from "../utils/api.js";
 import RestaurantShimmer from "./RestaurantShimmer/RestaurantShimmer.jsx";
 
-const Body = () => {
+const Body = () => {  
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
   // while seraching can serch from all
-  const [filterRestaurant,setFilterRestaurant] = useState([]);
+  const [filterRestaurant, setFilterRestaurant] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchText, setSearchText] = useState("");
 
@@ -35,9 +35,8 @@ const Body = () => {
           />
           <button
             onClick={() => {
-              
-              const filterdRestaurent = listOfRestaurant.filter(
-                (res) => res.info.name.toLowerCase().includes(searchText.toLowerCase()) 
+              const filterdRestaurent = listOfRestaurant.filter((res) =>
+                res.info.name.toLowerCase().includes(searchText.toLowerCase())
               );
               setFilterRestaurant(filterdRestaurent);
             }}
