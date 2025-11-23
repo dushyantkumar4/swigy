@@ -6,7 +6,7 @@ import AboutUs from "./components/AboutUs.jsx";
 import Contacts from "./components/Contacts.jsx";
 import Error from "./components/Error.jsx";
 import Layout from "./components/Layout.jsx";
-import RestaurantMenu from "./components/RestaurantMenu.jsx";
+import RestaurantMenu from "./components/restaurantInDetails/RestaurantMenu.jsx";
 
 const router = createBrowserRouter([
   {

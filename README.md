@@ -14,3 +14,4 @@ If you are developing a production application, we recommend using TypeScript wi
 # mock api ("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6139&lng=77.2090&page_type=DESKTOP_WEB_LISTING")
 
 # perticuler restaurant api - {"https://www.swiggy.com/mapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.7040592&lng=77.10249019999999&restaurantId=10208&submitAction=ENTER"}
+# const proxyUrl = "https://api.codetabs.com/v1/proxy?quest=";
