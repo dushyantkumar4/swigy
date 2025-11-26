@@ -3,7 +3,7 @@ import RestaurantCard from "./RestaurantCard";
 import { fetchApiData } from "../utils/api.js";
 import RestaurantShimmer from "./RestaurantShimmer/RestaurantShimmer.jsx";
 
-const Body = () => {  
+const Body = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
   // while seraching can serch from all
   const [filterRestaurant, setFilterRestaurant] = useState([]);

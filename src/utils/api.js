@@ -1,8 +1,8 @@
 import axios from "axios";
 const lat = 21.17024;
 const lng = 72.831062;
+import { baseUrl } from "./constant";
 
-const baseUrl = "https://foodfire.onrender.com/api";
 
 // fetching the data for the all restaurant
 export const fetchApiData = async () => {
@@ -23,10 +23,10 @@ export const fetchApiData = async () => {
 };
 
 // fetching the single restaturen details
-export const singleRestaurantApi = async () => {
+export const singleRestaurantApi = async ({resId}) => {
   try {
     const res = await axios.get(
-      `${baseUrl}/menu?page-type=REGULAR_MENU&complete-menu=true&lat=${lat}lng=${lng}&submitAction=ENTER&restaurantId=74644`
+      `${baseUrl}/menu?page-type=REGULAR_MENU&complete-menu=true&lat=${lat}lng=${lng}&submitAction=ENTER&restaurantId=${resId}`
     );
 
     const details = res?.data?.data?.cards;

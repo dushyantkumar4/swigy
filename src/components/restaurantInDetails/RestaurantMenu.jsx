@@ -3,17 +3,23 @@ import { IMG_URL } from "../../utils/constant";
 import { singleRestaurantApi } from "../../utils/api";
 import { ShimmerCategoryItem } from "react-shimmer-effects";
 import "./restaurantMenu.css";
+import RestaurantMenuCard from "./RestaurantMenuCard";
+import { useParams } from "react-router-dom";
+
 
 const RestaurantMenu = () => {
+  const {resId} = useParams();
+  
+
   const [resInfo, setResInfo] = useState(null);
 
   useEffect(() => {
     const getRestaurantsDetails = async () => {
-      const data = await singleRestaurantApi();
+      const data = await singleRestaurantApi({resId});
       setResInfo(data);
     };
     getRestaurantsDetails();
-  }, []);
+  }, [resId]);
 
   // simmer effect
   if (resInfo === null) {
@@ -33,6 +39,16 @@ const RestaurantMenu = () => {
   // for the first card
   const restaurantDetails = resInfo.find((c) => c.card?.card?.info)?.card.card
     .info;
+  // destructure first card in details
+  const {
+    name,
+    cuisines,
+    avgRating,
+    costForTwoMessage,
+    totalRatingsString,
+    cloudinaryImageId,
+    sla,
+  } = restaurantDetails || {};
 
   // for the all products
   const regularCards =
@@ -69,48 +85,51 @@ const RestaurantMenu = () => {
       });
     }
   });
-  console.log(allItemCards);
 
-  const {
-    name,
-    cuisines,
-    avgRating,
-    costForTwoMessage,
-    totalRatingsString,
-    cloudinaryImageId,
-    sla,
-  } = restaurantDetails || {};
+  // Remove duplicates based on unique "id"
+  const uniqueCards = allItemCards.filter(
+    (item, index, self) => index === self.findIndex((t) => t.id === item.id)
+  );
 
   return (
-    <div>
-      <div>
-        <img src={IMG_URL + cloudinaryImageId} alt="" />
-        <h1>{name}</h1>
-
-        <h3>
-          ★ {avgRating} ({totalRatingsString}) - {costForTwoMessage}
-        </h3>
-        <p>{cuisines.join(", ")}</p>
-        <p>{sla.slaString}</p>
+    <div className="flex flex-col gap-5 px-10 sm:px-20 md:px-30  lg:px-50 mt-10">
+      <div className="flex items-center gap-10 border border-gray-300 p-5 rounded-2xl shadow-lg">
+        <img
+          src={IMG_URL + cloudinaryImageId}
+          alt=""
+          className="size-40 rounded-2xl object-fit"
+        />
+        <div>
+          <h1 className="text-2xl font-bold">{name}</h1>
+          <p>
+            ★ {avgRating} ({totalRatingsString}) - {costForTwoMessage}
+          </p>
+          <p>{cuisines.join(", ")}</p>
+          <p>{sla.slaString}</p>
+        </div>
       </div>
 
-      {allItemCards.map((item) => {
-        const { name: dishName, imageId, price, description,ratings } = item;
-        const {rating,ratingCountV2} = ratings?.aggregatedRating || {};
+      {uniqueCards.map((item) => {
+        const {
+          name: dishName,
+          imageId,
+          price,
+          description,
+          ratings,
+          id,
+        } = item;
+        const { rating, ratingCountV2 } = ratings?.aggregatedRating || {};
+
         return (
-          <div className="rest_menu_dish">
-            <div>
-              <div>
-                <h3>{dishName}</h3>
-                <p>₹ {price / 100}</p>
-                <p> ★ {rating } ({ratingCountV2})</p>
-              </div>
-              <img src={IMG_URL + imageId} alt="" />
-            </div>
-            <div>
-              <p>{description}</p>
-              <button className="dish_btn"> ADD + </button>
-            </div>
+          <div key={id} className="flex flex-col items-center">
+            <RestaurantMenuCard
+              dishName={dishName}
+              price={price}
+              rating={rating}
+              ratingCountV2={ratingCountV2}
+              imageId={imageId}
+              description={description}
+            />
           </div>
         );
       })}

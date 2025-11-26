@@ -1,5 +1,7 @@
 import React from "react";
 import { IMG_URL } from "../utils/constant.js";
+import { NavLink } from "react-router-dom";
+
 const RestaurantCard = ({ resData }) => {
   return (
     <div className="res-card-container">
@@ -14,18 +16,20 @@ const RestaurantCard = ({ resData }) => {
           id,
         } = restaurant.info;
         return (
-          <div className="res-card" key={id}>
-            <img
-              src={IMG_URL + cloudinaryImageId}
-              alt="res-logo"
-              className="res-logo"
-            />
-            <h3>{name}</h3>
-            <h4>{cuisines.join(" , ")}</h4>
-            <h4>{avgRating} ★</h4>
-            <h4>{costForTwo}</h4>
-            <h4>{sla.deliveryTime} minutes</h4>
-          </div>
+          <NavLink key={id} to={`/restaurants/${id}`}>
+            <div className="res-card">
+              <img
+                src={IMG_URL + cloudinaryImageId}
+                alt="res-logo"
+                className="res-logo"
+              />
+              <h3>{name}</h3>
+              <h4>{cuisines.join(" , ")}</h4>
+              <h4>{avgRating} ★</h4>
+              <h4>{costForTwo}</h4>
+              <h4>{sla.deliveryTime} minutes</h4>
+            </div>
+          </NavLink>
         );
       })}
     </div>
