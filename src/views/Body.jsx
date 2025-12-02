@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard from "../components/RestaurantCard.jsx";
 import { fetchApiData } from "../utils/api.js";
-import RestaurantShimmer from "./RestaurantShimmer/RestaurantShimmer.jsx";
+import RestaurantShimmer from "../components/RestaurantShimmer/RestaurantShimmer.jsx";
 
 const Body = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);

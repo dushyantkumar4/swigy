@@ -5,6 +5,7 @@ import { ShimmerCategoryItem } from "react-shimmer-effects";
 import "./restaurantMenu.css";
 import RestaurantMenuCard from "./RestaurantMenuCard";
 import { useParams } from "react-router-dom";
+import useRestaurantMenu from "../../hooks/useRestaurantMenu";
 
 
 const RestaurantMenu = () => {
