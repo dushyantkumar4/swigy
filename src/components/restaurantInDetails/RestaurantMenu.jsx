@@ -1,25 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { IMG_URL } from "../../utils/constant";
-import { singleRestaurantApi } from "../../utils/api";
 import { ShimmerCategoryItem } from "react-shimmer-effects";
 import "./restaurantMenu.css";
 import RestaurantMenuCard from "./RestaurantMenuCard";
 import { useParams } from "react-router-dom";
+import useRestaurantMenu from "../../hooks/useRestaurantMenu";
 
 
 const RestaurantMenu = () => {
-  const {resId} = useParams();
+  const resId = useParams();
   
-
-  const [resInfo, setResInfo] = useState(null);
-
-  useEffect(() => {
-    const getRestaurantsDetails = async () => {
-      const data = await singleRestaurantApi({resId});
-      setResInfo(data);
-    };
-    getRestaurantsDetails();
-  }, [resId]);
+  const resInfo= useRestaurantMenu(resId);
 
   // simmer effect
   if (resInfo === null) {
