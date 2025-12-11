@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import logo from "../assets/images/foodlogo2.png";
+import logo from "../assets/images/Decent (1).png";
 import useOnlineStatus from "../hooks/useOnlineStatus";
 
 const Header = () => {
@@ -8,30 +8,37 @@ const Header = () => {
   const onlineStatus = useOnlineStatus();
 
   return (
-    <div className="header">
-      <div className="logo-container">
-        <img className="logo" src={logo} alt="" />
+    <div className="flex justify-between shadow-lg px-7">
+      {/* left section */}
+      <div className="">
+        <img className="w-20! rounded-4xl " src={logo} alt="" />
       </div>
-      <div className="nav-items">
-        <ul className="header-list">
-          <li className="flex items-center">Status:{onlineStatus ? "🟢":"🔴"}</li>
-          <li>
-            <NavLink to="/">Home</NavLink>
+      {/* right section  */}
+      <div className="flex items-center ">
+        <ul className=" flex gap-5 items-center">
+          <li className="flex items-center text-center gap-1 text-xl font-medium">
+            Status :<span className="text-sm place-self-center">{onlineStatus ? "🟢" : "🔴"}</span>
+            
           </li>
           <li>
-            <NavLink to="/about">About</NavLink>
+            <NavLink to="/" className="text-xl font-medium">Home</NavLink>
           </li>
           <li>
-            <NavLink to="/contact">Contact Us</NavLink>
+            <NavLink to="/about" className="text-xl font-medium">About</NavLink>
           </li>
           <li>
-            <NavLink to="#">cart</NavLink>
+            <NavLink to="/contact" className="text-xl font-medium" >Contact Us</NavLink>
           </li>
           <li>
-            <NavLink to="/grocery">Grocery</NavLink>
+            <NavLink to="#" className="text-xl font-medium" >cart</NavLink>
+          </li>
+          <li>
+            <NavLink to="/grocery" className="text-xl font-medium" >Grocery</NavLink>
           </li>
           <button
-            className="login"
+            className={`px-4 py-1 shadow-lg rounded-xl text-xl font-medium ${
+              btnNameReact === "Login" ? "text-green-600" : "text-red-500"
+            }`}
             onClick={() => {
               btnNameReact === "Login"
                 ? setBtnNameReact("Logout")
