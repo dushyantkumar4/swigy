@@ -27,17 +27,17 @@ if(onlineStatus===false) return <h1>Looks like you're offline!! Please check you
   if (loading) return <RestaurantShimmer />;
 
   return (
-    <div className="body">
-      <div className="filter">
-        <div className="search">
+    <div className="">
+      <div className="flex gap-5 p-10">
+        <div className="flex gap-5">
           <input
-            className="serch-box"
+            className="border border-green-600 rounded-xl py-1"
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
             }}
           />
-          <button
+          <button className="cursor-pointer shadow py-1 px-3 rounded-xl text-green-600"
             onClick={() => {
               const filterdRestaurent = listOfRestaurant.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -49,7 +49,7 @@ if(onlineStatus===false) return <h1>Looks like you're offline!! Please check you
           </button>
         </div>
         <button
-          className="filter-btn"
+          className="cursor-pointer shadow py-1 px-3 rounded-xl text-green-600"
           onClick={() => {
             const filterList = listOfRestaurant.filter(
               (res) => res.info.avgRating > 4
@@ -60,6 +60,7 @@ if(onlineStatus===false) return <h1>Looks like you're offline!! Please check you
           Top Rated Restaurants
         </button>
       </div>
+      {/* all Restaurents  */}
       <div className="res-container">
         <RestaurantCard resData={filterRestaurant} />
       </div>

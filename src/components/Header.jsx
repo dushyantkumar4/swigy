@@ -12,7 +12,7 @@ const Header = () => {
       {/* left section */}
       <div className="">
         <img className="w-20! rounded-4xl " src={logo} alt="" />
-      </div>
+      </div>  
       {/* right section  */}
       <div className="flex items-center ">
         <ul className=" flex gap-5 items-center">
