@@ -2,7 +2,7 @@ import React from "react";
 import { IMG_URL } from "../utils/constant.js";
 import { NavLink } from "react-router-dom";
 
-const RestaurantCard = ({ resData }) => {
+const RestaurantCard = ({ resData =[]}) => {
   return (
     <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-center px-10">
       {resData.map((restaurant) => {

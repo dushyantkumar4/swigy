@@ -22,18 +22,3 @@ export const fetchApiData = async () => {
   }
 };
 
-// fetching the single restaturen details
-export const singleRestaurantApi = async ({resId}) => {
-  try {
-    const res = await axios.get(
-      `${baseUrl}/menu?page-type=REGULAR_MENU&complete-menu=true&lat=${lat}lng=${lng}&submitAction=ENTER&restaurantId=${resId}`
-    );
-
-    const details = res?.data?.data?.cards;
-
-    return details;
-  } catch (error) {
-    console.error("Error fetching restaurant menu:", error.message);
-    return null;
-  }
-};

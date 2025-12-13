@@ -1,30 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useState,useEffect } from "react";
 import RestaurantCard from "../components/RestaurantCard.jsx";
-import { fetchApiData } from "../utils/api.js";
+
 import RestaurantShimmer from "../components/RestaurantShimmer/RestaurantShimmer.jsx";
 import useOnlineStatus from "../hooks/useOnlineStatus.js";
+import useAllRestaurant from "../hooks/useAllRestaurant.js";
 
 const Body = () => {
-  const [listOfRestaurant, setListOfRestaurant] = useState([]);
-  // while seraching can serch from all
+ 
   const [filterRestaurant, setFilterRestaurant] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [searchText, setSearchText] = useState("");
+  const { listOfRestaurant, loading } = useAllRestaurant();
+  const onlineStatus = useOnlineStatus();
+  console.log(listOfRestaurant);
 
-  useEffect(() => {
-    const getRestaurants = async () => {
-      const data = await fetchApiData();
-      setListOfRestaurant(data);
-      setFilterRestaurant(data);
-      setLoading(false);
-    };
-    getRestaurants();
-  }, []);
-
-const onlineStatus = useOnlineStatus();
-if(onlineStatus===false) return <h1>Looks like you're offline!! Please check your internet connection.</h1>
+    useEffect(() => {
+    setFilterRestaurant(listOfRestaurant);
+  }, [listOfRestaurant]);
 
   if (loading) return <RestaurantShimmer />;
+
+  if (onlineStatus === false)
+    return (
+      <h1>
+        Looks like you're offline!! Please check your internet connection.
+      </h1>
+    );
 
   return (
     <div className="">
@@ -37,7 +37,8 @@ if(onlineStatus===false) return <h1>Looks like you're offline!! Please check you
               setSearchText(e.target.value);
             }}
           />
-          <button className="cursor-pointer shadow py-1 px-3 rounded-xl text-green-600"
+          <button
+            className="cursor-pointer shadow py-1 px-3 rounded-xl text-green-600"
             onClick={() => {
               const filterdRestaurent = listOfRestaurant.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -54,7 +55,7 @@ if(onlineStatus===false) return <h1>Looks like you're offline!! Please check you
             const filterList = listOfRestaurant.filter(
               (res) => res.info.avgRating > 4
             );
-            setListOfRestaurant(filterList);
+            setFilterRestaurant(filterList);
           }}
         >
           Top Rated Restaurants
