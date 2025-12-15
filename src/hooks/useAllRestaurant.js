@@ -24,7 +24,6 @@ const [loading, setLoading] = useState(true);
         )?.card.card.gridElements.infoWithStyle.restaurants || [];
         
       setListOfRestaurant(restaurants);
-        console.log(restaurants)
       return restaurants;
     } catch (error) {
       console.error("Error fetching restaurants:", error.message);
