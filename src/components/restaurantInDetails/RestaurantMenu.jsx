@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { IMG_URL } from "../../utils/constant";
 import { ShimmerCategoryItem } from "react-shimmer-effects";
-import RestaurantMenuCard from "./RestaurantMenuCard";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../../hooks/useRestaurantMenu";
-
+import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = () => {
+  const [openCategoryId, setOpenCategoryId] = useState(null);
   const resId = useParams();
-  
-  const resInfo= useRestaurantMenu(resId);
+  const resInfo = useRestaurantMenu(resId);
+
+  const toggleCategory = (id) => {
+    setOpenCategoryId((prev) => (prev === id ? null : id));
+  };
 
   // simmer effect
   if (resInfo === null) {
@@ -45,7 +48,7 @@ const RestaurantMenu = () => {
     resInfo?.find((c) => c.groupedCard)?.groupedCard?.cardGroupMap?.REGULAR
       ?.cards || [];
 
-  let allItemCards = [];
+  let categories = [];
 
   regularCards.forEach((entry) => {
     const inner = entry?.card?.card;
@@ -56,11 +59,11 @@ const RestaurantMenu = () => {
       inner["@type"] ===
       "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     ) {
-      if (inner.itemCards?.length) {
-        inner.itemCards.forEach((item) => {
-          allItemCards.push(item.card.info);
-        });
-      }
+      categories.push({
+        categoryId: inner.categoryId,
+        title: inner.title,
+        itemCards: inner.itemCards || [],
+      });
     }
 
     // CASE 2: NestedItemCategory (categories inside)
@@ -69,21 +72,19 @@ const RestaurantMenu = () => {
       "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory"
     ) {
       inner.categories?.forEach((cat) => {
-        cat.itemCards?.forEach((item) => {
-          allItemCards.push(item.card.info);
+        categories.push({
+          categoryId: cat.categoryId,
+          title: cat.title,
+          itemCards: cat.itemCards || [],
         });
       });
     }
   });
 
-  // Remove duplicates based on unique "id"
-  const uniqueCards = allItemCards.filter(
-    (item, index, self) => index === self.findIndex((t) => t.id === item.id)
-  );
-
   return (
     <div className="flex flex-col gap-5 px-10 sm:px-20 md:px-30  lg:px-50 mt-10">
-      <div className="flex items-center gap-10 border border-gray-300 p-5 rounded-2xl shadow-lg">
+      {/* main restaurat header  */}
+      <div className="flex flex-col sm:flex-col lg:flex-row items-center gap-10 border border-gray-300 p-5 rounded-2xl shadow-lg">
         <img
           src={IMG_URL + cloudinaryImageId}
           alt=""
@@ -99,30 +100,17 @@ const RestaurantMenu = () => {
         </div>
       </div>
 
-      {uniqueCards.map((item) => {
-        const {
-          name: dishName,
-          imageId,
-          price,
-          description,
-          ratings,
-          id,
-        } = item;
-        const { rating, ratingCountV2 } = ratings?.aggregatedRating || {};
-
-        return (
-          <div key={id} className="flex flex-col items-center">
-            <RestaurantMenuCard
-              dishName={dishName}
-              price={price}
-              rating={rating}
-              ratingCountV2={ratingCountV2}
-              imageId={imageId}
-              description={description}
-            />
-          </div>
-        );
-      })}
+      {/* all dishes  */}
+      <div className="px-1">
+        {categories.map((cat) => (
+          <RestaurantCategory
+            key={cat.categoryId}
+            data={cat}
+            isOpen={openCategoryId === cat.categoryId}
+            onToggle={() => toggleCategory(cat.categoryId)}
+          />
+        ))}
+      </div>
     </div>
   );
 };
