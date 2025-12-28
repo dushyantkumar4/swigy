@@ -1,8 +1,11 @@
-import React from "react";
+import React,{useContext} from "react";
 import { IMG_URL } from "../utils/constant.js";
 import { NavLink } from "react-router-dom";
+import UserContext from "../utils/UserContext.js";
+
 
 const RestaurantCard = ({ resData }) => {
+  const {loggedUser} = useContext(UserContext);
   const { name, cloudinaryImageId, cuisines, avgRating, costForTwo, sla } =
     resData.info;
 
@@ -26,6 +29,7 @@ const RestaurantCard = ({ resData }) => {
           <p className="text-gray-500">{cuisines.join(" , ")}</p>
           <p>{costForTwo}</p>
         </div>
+        <p>{loggedUser}</p>
       </div>
     </div>
   );

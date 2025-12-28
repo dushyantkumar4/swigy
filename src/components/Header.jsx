@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/images/Decent (1).png";
 import useOnlineStatus from "../hooks/useOnlineStatus";
+import UserContext from "../utils/UserContext";
+
 
 const Header = () => {
+  const {loggedUser} = useContext(UserContext);
   const [btnNameReact, setBtnNameReact] = useState("Login");
   const onlineStatus = useOnlineStatus();
 
@@ -47,6 +50,7 @@ const Header = () => {
           >
             {btnNameReact}
           </button>
+          <li>{loggedUser}</li>
         </ul>
       </div>
     </div>
