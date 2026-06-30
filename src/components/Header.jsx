@@ -35,9 +35,6 @@ const Header = () => {
           <li>
             <NavLink to="#" className="text-xl font-medium" >cart</NavLink>
           </li>
-          <li>
-            <NavLink to="/grocery" className="text-xl font-medium" >Grocery</NavLink>
-          </li>
           <button
             className={`px-4 py-1 shadow-lg rounded-xl text-xl font-medium ${
               btnNameReact === "Login" ? "text-green-600" : "text-red-500"
