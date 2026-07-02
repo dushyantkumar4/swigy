@@ -32,7 +32,7 @@ const Body = () => {
       <div className="flex gap-5 p-10 ">
         <div className="flex gap-5">
           <input
-            className="border border-green-600 rounded-xl py-1 "
+            className="border border-green-600 rounded-xl py-1 px-1"
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
