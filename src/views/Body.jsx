@@ -29,6 +29,7 @@ const Body = () => {
 
   return (
     <div className="">
+      {/* Search bar & filter section  */}
       <div className="flex gap-5 p-10 ">
         <div className="flex gap-5">
           <input

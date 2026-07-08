@@ -7,6 +7,8 @@ import Contacts from "./views/Contacts.jsx";
 import Error from "./components/Error.jsx";
 import Layout from "./components/Layout.jsx";
 import RestaurantMenu from "./components/restaurantInDetails/RestaurantMenu.jsx";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore.js";
 
 
 const router = createBrowserRouter([
@@ -38,7 +40,9 @@ const router = createBrowserRouter([
 const App = () => {
   return (
     <div className="app">
+      <Provider store={appStore}>
       <RouterProvider router={router} />
+      </Provider>
     </div>
   );
 };
