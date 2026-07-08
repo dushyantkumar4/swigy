@@ -7,6 +7,7 @@ const cartSlice = createSlice({
   },
   reducers: {
     addItem: (state, action) => {
+      // mutation the state here 
       state.item.push(action.payload);
     },
     removeItem: (state) => {
@@ -18,6 +19,6 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addItem, removeItem } = cartSlice.actions;
+export const { addItem, removeItem, clearStore } = cartSlice.actions;
 
-export default cartSlice;
+export default cartSlice.reducer;
