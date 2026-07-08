@@ -3,12 +3,17 @@ import { NavLink } from "react-router-dom";
 import logo from "../assets/images/Decent (1).png";
 import useOnlineStatus from "../hooks/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 
 const Header = () => {
   const {loggedUser} = useContext(UserContext);
   const [btnNameReact, setBtnNameReact] = useState("Login");
   const onlineStatus = useOnlineStatus();
+  
+  // subscribing to the store using the selector
+  const cart = useSelector((store)=>store.cart.item);
+  
 
   return (
     <div className="flex justify-between shadow-lg px-7">
@@ -33,7 +38,7 @@ const Header = () => {
             <NavLink to="/contact" className="text-xl font-medium" >Contact Us</NavLink>
           </li>
           <li>
-            <NavLink to="#" className="text-xl font-medium" >cart</NavLink>
+            <NavLink to="#" className="text-xl font-bold" >cart {cart.length} items</NavLink>
           </li>
           <button
             className={`px-4 py-1 shadow-lg rounded-xl text-xl font-medium ${
