@@ -1,9 +1,10 @@
 import React from "react";
-import { IMG_URL } from "../../utils/constant";
+import { IMG_URL } from "../../utils/constant.js";
 import { useDispatch } from "react-redux";
-import { addItem } from "../../utils/cartSlice";
+import { addItem } from "../../utils/cartSlice.js";
 
 const RestaurantMenuCard = ({
+  key,
   dishName,
   price,
   rating = 1,
@@ -13,9 +14,9 @@ const RestaurantMenuCard = ({
 }) => {
   const dispatch = useDispatch();
 
-  const handleAddItem = ()=>{
-    dispatch(addItem("samosa"));
-  }
+  const handleAddItem = () => {
+    dispatch(addItem({ dishName, price, rating, imageId }));
+  };
 
   return (
     <div className="flex justify-between w-full px-1 border-b border-gray-300 pb-5">
@@ -39,8 +40,10 @@ const RestaurantMenuCard = ({
             className="w-full h-full"
           />
         </div>
-        <button onClick={handleAddItem}
-        className=" text-green-600 sm:font-semibold md:font-bold border border-gray-300 text-center w-auto px-10 py-2 shadow-lg rounded-lg">
+        <button
+          onClick={handleAddItem}
+          className=" text-green-600 sm:font-semibold md:font-bold border border-gray-300 text-center w-auto px-10 py-2 shadow-lg rounded-lg"
+        >
           ADD
         </button>
       </div>
