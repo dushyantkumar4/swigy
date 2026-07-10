@@ -2,6 +2,7 @@ import React from "react";
 import { IMG_URL } from "../../utils/constant.js";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../utils/cartSlice.js";
+import { toast } from 'sonner';
 
 const RestaurantMenuCard = ({
   id,
@@ -15,6 +16,7 @@ const RestaurantMenuCard = ({
   const dispatch = useDispatch();
   const handleAddItem = () => {
     dispatch(addItem({id, dishName, price, rating, imageId }));
+    toast.success(`${dishName} added to cart`);
   };
 
   return (

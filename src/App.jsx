@@ -10,7 +10,7 @@ import RestaurantMenu from "./components/restaurantInDetails/RestaurantMenu.jsx"
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore.js";
 import Cart from "./components/Cart.jsx";
-
+import { Toaster } from "sonner";
 
 const router = createBrowserRouter([
   {
@@ -34,9 +34,9 @@ const router = createBrowserRouter([
         element: <RestaurantMenu />,
       },
       {
-        path:"/cart",
-        element:<Cart/>
-      }
+        path: "/cart",
+        element: <Cart />,
+      },
     ],
     errorElement: <Error />,
   },
@@ -45,8 +45,17 @@ const router = createBrowserRouter([
 const App = () => {
   return (
     <div className="app">
+      <Toaster
+        position="top-right"
+        richColors
+        closeButton
+        toastOptions={{
+          className:
+            "font-sans rounded-xl border border-gray-200 shadow-xl p-4",
+        }}
+      />
       <Provider store={appStore}>
-      <RouterProvider router={router} />
+        <RouterProvider router={router} />
       </Provider>
     </div>
   );

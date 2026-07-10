@@ -4,6 +4,7 @@ import { IMG_URL } from "../utils/constant.js";
 import { useDispatch } from "react-redux";
 import { removeItem, clearItem } from "../utils/cartSlice.js";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'sonner';
 
 const Cart = () => {
   const carts = useSelector((store) => store.cart.item);
@@ -13,10 +14,12 @@ const Cart = () => {
   // remove single item from cart
   const handleRemoveItem = (id) => {
     dispatch(removeItem(id));
+    toast.success(`Item removed from cart`);
   };
   // Complete clear cart store
   const handleClearCart = () => {
     dispatch(clearItem());
+    toast.success(`Cart clear Successfully`);
   };
 
   return (
