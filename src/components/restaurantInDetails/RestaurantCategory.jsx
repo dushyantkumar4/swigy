@@ -27,6 +27,7 @@ const RestaurantCategory = ({ data, isOpen, onToggle }) => {
             return (
               <RestaurantMenuCart
                 key={id}
+                id={id}
                 dishName={name}
                 price={price}
                 rating={rating}
