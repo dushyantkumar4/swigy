@@ -4,11 +4,13 @@ import logo from "../assets/images/Decent (1).png";
 import useOnlineStatus from "../hooks/useOnlineStatus";
 import UserContext from "../utils/UserContext";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const { loggedUser } = useContext(UserContext);
   const [btnNameReact, setBtnNameReact] = useState("Login");
   const onlineStatus = useOnlineStatus();
+  const navigate = useNavigate();
 
   // subscribing to the store using the selector
   const cart = useSelector((store) => store.cart.item);
@@ -44,10 +46,13 @@ const Header = () => {
             </NavLink>
           </li>
           <li className=" pr-1">
-            <i class="fa-solid fa-cart-shopping relative text-2xl">
-              <NavLink to="/cart" className="text-sm absolute -top-3">
+            <i
+              className="fa-solid fa-cart-shopping relative text-2xl"
+              onClick={() => navigate("/cart")}
+            >
+              <div className="text-sm absolute -top-3 -right-1.5">
                 {cart.length}
-              </NavLink>
+              </div>
             </i>
           </li>
           <button
