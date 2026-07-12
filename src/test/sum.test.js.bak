@@ -1,0 +1,7 @@
+import { sum } from "../components/sum.js";
+
+test("sum function shoud calculate sum of 2 numbers", () => {
+  const result = sum(3, 5);
+  //Assersion
+  expect(result).toBe(8);
+});
