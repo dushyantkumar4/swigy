@@ -47,6 +47,7 @@ const Header = () => {
           </li>
           <li className=" pr-1">
             <i
+              aria-label="shopping cart"
               className="fa-solid fa-cart-shopping relative text-2xl"
               onClick={() => navigate("/cart")}
             >
