@@ -8,6 +8,7 @@ const RestaurantShimmer = () => {
     <div className="shimmer-container">
       {Array.from({ length: count }).map((_, index) => (
         <ShimmerPostItem
+          key={index}
           className="shimmer-card"
           style={{ marginTop: "2rem", paddingTop: "2rem" }}
           card
