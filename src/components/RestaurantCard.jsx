@@ -1,17 +1,17 @@
-import React,{useContext} from "react";
+import React, { useContext } from "react";
 import { IMG_URL } from "../utils/constant.js";
 import { NavLink } from "react-router-dom";
 import UserContext from "../utils/UserContext.js";
 
-
 const RestaurantCard = ({ resData }) => {
-  const {loggedUser} = useContext(UserContext);
+  const { loggedUser } = useContext(UserContext);
   const { name, cloudinaryImageId, cuisines, avgRating, costForTwo, sla } =
     resData.info;
 
   return (
-    <div className="">
-      <div className="transition-all duration-60 hover:p-2 max-w-70">
+    <>
+      <div data-testid="resCard"
+       className="transition-all duration-60 hover:p-2 max-w-70">
         <img
           src={IMG_URL + cloudinaryImageId}
           alt={name}
@@ -31,14 +31,16 @@ const RestaurantCard = ({ resData }) => {
         </div>
         <p>{loggedUser}</p>
       </div>
-    </div>
+    </>
   );
 };
 
 export const WithOff = (WrappedComponent) => {
   return (props) => (
     <div className="relative ">
-      <label className="absolute font-medium text-white text-xl shadow-xl bg-green-500 rounded-xl px-3  ">{props?.resData?.info?.aggregatedDiscountInfoV3?.header}</label>
+      <label className="absolute font-medium text-white text-xl shadow-xl bg-green-500 rounded-xl px-3  ">
+        {props?.resData?.info?.aggregatedDiscountInfoV3?.header}
+      </label>
       <WrappedComponent {...props} />
     </div>
   );
