@@ -1,8 +1,21 @@
 import { render, screen } from "@testing-library/react";
 import Contacts from "../views/Contacts";
-import { describe } from "vitest";
+import { afterAll, afterEach, beforeAll, beforeEach, describe } from "vitest";
 
 describe("Contact us page test cases", () => {
+  // beforeAll(() => {
+  //   console.log("before All test cases");
+  // });
+  // beforeEach(() => {
+  //   console.log("before each test case");
+  // });
+  // afterEach(() => {
+  //   console.log("after each test case");
+  // });
+  // afterAll(() => {
+  //   console.log("after all test cases");
+  // });
+
   it("should load contact us component", () => {
     render(<Contacts />);
     //   Querying
