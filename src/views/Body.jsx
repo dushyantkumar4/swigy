@@ -33,6 +33,7 @@ const Body = () => {
       <div className="flex gap-5 p-10 ">
         <div className="flex gap-5">
           <input
+            data-testid="searchInput"
             className="border border-green-600 rounded-xl py-1 px-1"
             value={searchText}
             onChange={(e) => {
@@ -43,7 +44,7 @@ const Body = () => {
             className="cursor-pointer shadow hover:shadow-md py-1 px-3 rounded-xl text-green-600"
             onClick={() => {
               const filterdRestaurent = listOfRestaurant.filter((res) =>
-                res.info.name.toLowerCase().includes(searchText.toLowerCase())
+                res.info.name.toLowerCase().includes(searchText.toLowerCase()),
               );
               setFilterRestaurant(filterdRestaurent);
             }}
@@ -55,7 +56,7 @@ const Body = () => {
           className="cursor-pointer shadow hover:shadow-md py-1 px-3 rounded-xl text-green-600"
           onClick={() => {
             const filterList = listOfRestaurant.filter(
-              (res) => res.info.avgRating > 4
+              (res) => res.info.avgRating > 4,
             );
             setFilterRestaurant(filterList);
           }}
