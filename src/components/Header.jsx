@@ -51,7 +51,7 @@ const Header = () => {
               className="fa-solid fa-cart-shopping relative text-2xl"
               onClick={() => navigate("/cart")}
             >
-              <div className="text-sm absolute -top-3 -right-1.5">
+              <div data-testid="cartCount" className="text-sm absolute -top-3 -right-1.5">
                 {cart.length}
               </div>
             </i>
