@@ -54,6 +54,7 @@ const Cart = () => {
 
       {carts.map((cart) => (
         <div
+        data-testid="addedItems"
           key={cart.id}
           className="flex justify-between w-6/12 px-1 border-b border-gray-300 pb-5"
         >
