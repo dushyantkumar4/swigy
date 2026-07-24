@@ -42,6 +42,7 @@ const RestaurantMenuCard = ({
           />
         </div>
         <button
+          data-testid="addItem"
           onClick={handleAddItem}
           className=" text-green-600 sm:font-semibold md:font-bold border border-gray-300 text-center w-auto px-10 py-2 shadow-lg rounded-lg"
         >
