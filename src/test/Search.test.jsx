@@ -1,6 +1,6 @@
 import Body from "../views/Body.jsx";
 import { expect, describe } from "vitest";
-import { findByRole, fireEvent, render, screen } from "../utils/test-utils";
+import { findByRole, fireEvent, render, screen } from "../utils/test-utils.jsx";
 import { act } from "react-dom/test-utils";
 import MOCK_DATA from "../mocks/mockResCardList.json";
 import axios from "axios";
@@ -27,7 +27,7 @@ describe("Integration test cases for the Body compo", () => {
     const cardsAfterSearch = screen.getAllByTestId("resCard");
     expect(cardsAfterSearch.length).toBe(1);
   });
-  
+
   it("should filter top rated restaurant",async()=>{
     render(<Body/>);
 
